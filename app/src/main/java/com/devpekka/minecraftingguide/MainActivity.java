@@ -3,55 +3,25 @@ package com.devpekka.minecraftingguide;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.media.Image;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Environment;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-    ImageView imageViewShipWrecked, imageViewHugeAtSpawn, imageViewThumbnail;
-
-    private static final int MY_PERMISSION = 1;
-    ProgressDialog mProgressDialog;
-
-    double file_size = 0;
-    String file_name;
+    ImageView imageVShipW, imageHugeCoral, imageDungeon, imageMinecon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,25 +30,31 @@ public class MainActivity extends AppCompatActivity {
 
         // Glide image finder
         //
-        imageViewShipWrecked = findViewById(R.id.imageView);
-        imageViewHugeAtSpawn = findViewById(R.id.imageViewP2);
-        imageViewThumbnail = findViewById(R.id.imageViewP22);
+        imageVShipW = findViewById(R.id.shipWreckImage);
+        imageHugeCoral = findViewById(R.id.hugeCoralImage);
+        imageDungeon = findViewById(R.id.dungeonImage);
+        imageMinecon = findViewById(R.id.mineconImage);
         //
         // End of image Finder
 
         //Glide ImageView
         //
+
         Glide.with(this)
                 .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-4.jpg")
-                .into(imageViewShipWrecked);
+                .into(imageVShipW);
 
         Glide.with(this)
                 .load("http://mcpedl.com/wp-content/uploads/2018/04/big-coral-3.jpg")
-                .into(imageViewHugeAtSpawn);
+                .into(imageHugeCoral);
 
         Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2017/01/sspe-13-1-1.jpg")
-                .into(imageViewThumbnail);
+                .load("https://mcpehq.com/wp-content/uploads/2017/07/spawn-village-dungeon-beneath-well-1.jpeg")
+                .into(imageDungeon);
+
+        Glide.with(this)
+                .load("https://mcpehq.com/wp-content/uploads/2017/09/minecon-2017-minecon-earth-event.jpg")
+                .into(imageMinecon);
         //
         // End of Glide ImageView
     }
@@ -99,14 +75,15 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog, null);
                 CardView mCardView = mView.findViewById(R.id.cardViews);
+                TextView mVersionCodes = mView.findViewById(R.id.appversion);
+
+                mVersionCodes.setText("v" + String.valueOf(BuildConfig.VERSION_NAME));
 
                 mCardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mBuilder != null) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mcpedl.com/"));
-                            startActivity(browserIntent);
-                        }
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mcpedl.com/"));
+                        startActivity(browserIntent);
                     }
                 });
 
@@ -126,12 +103,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void shipWreckCoral(View view) {
-        Intent shipWrecked = new Intent(MainActivity.this, DownloadFileTest.class);
+        Intent shipWrecked = new Intent(MainActivity.this, ShipWrecked.class);
         startActivity(shipWrecked);
     }
 
-    public void sspeLightWeight(View view) {
-        Intent shaderLightWeight = new Intent(MainActivity.this, SSPELightWeightShader.class);
-        startActivity(shaderLightWeight);
+    public void dungeonBeneath(View view) {
+        Intent dungeonWorld = new Intent(MainActivity.this, DungeonBeneathSeed.class);
+        startActivity(dungeonWorld);
+    }
+
+    public void minecon(View view) {
+        Intent minecon = new Intent(MainActivity.this, Minecon.class);
+        startActivity(minecon);
     }
 }

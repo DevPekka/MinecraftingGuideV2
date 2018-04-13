@@ -18,43 +18,37 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-public class ShipWrecked extends AppCompatActivity {
-    ImageView imageViewWreckedShipp, glide1, glide2;
+public class DungeonBeneathSeed extends AppCompatActivity {
+    ImageView imageThumbnail, glide1;
     ClipboardManager cM;
     ClipData cD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ship_wrecked);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setSubtitle("Shipwreck Seed");
-
-        //Glide image Finder
-        //
-        imageViewWreckedShipp = findViewById(R.id.shipWreck);
-
-        glide1 = findViewById(R.id.imageV1);
-        glide2 = findViewById(R.id.imageV2);
-        //
-        //End of Glide Image Finder
-
-        //Glide Image
-        //
-        Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-4.jpg")
-                .into(imageViewWreckedShipp);
-        Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-6.jpg")
-                .into(glide1);
-        Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-7.jpg")
-                .into(glide2);
-        //
-        //End of Glide Image
+        setContentView(R.layout.activity_dungeon_beneath_seed);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         cM = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
 
+        imageThumbnail = findViewById(R.id.dungeonThumbnail);
+        glide1 = findViewById(R.id.dungeon1);
+
+        Glide.with(this)
+                .load("https://mcpehq.com/wp-content/uploads/2017/07/spawn-village-dungeon-beneath-well-1.jpeg")
+                .into(imageThumbnail);
+        Glide.with(this)
+                .load("https://mcpehq.com/wp-content/uploads/2017/07/spawn-village-dungeon-beneath-well-1.jpeg")
+                .into(glide1);
+
+    }
+
+    public void copyDungeonSeed(View view) {
+        String text = "-1166728700";
+        cD  = ClipData.newPlainText("text",text);
+        cM.setPrimaryClip(cD);
+
+        Toast.makeText(getApplicationContext(), "Text Copied", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -69,10 +63,9 @@ public class ShipWrecked extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.credit:
-                final AlertDialog.Builder mBuilder =  new AlertDialog.Builder(ShipWrecked.this);
+                final AlertDialog.Builder mBuilder =  new AlertDialog.Builder(DungeonBeneathSeed.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog, null);
                 CardView mCardView = mView.findViewById(R.id.cardViews);
-
                 TextView mVersionCodes = mView.findViewById(R.id.appversion);
 
                 mVersionCodes.setText("v" + String.valueOf(BuildConfig.VERSION_NAME));
@@ -91,13 +84,5 @@ public class ShipWrecked extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void copySeedShipWrecked(View view) {
-        String text = "-1618472320";
-        cD  = ClipData.newPlainText("text",text);
-        cM.setPrimaryClip(cD);
-
-        Toast.makeText(getApplicationContext(), "Text Copied", Toast.LENGTH_SHORT).show();
     }
 }

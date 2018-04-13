@@ -1,8 +1,7 @@
 package com.devpekka.minecraftingguide;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,47 +13,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-public class ShipWrecked extends AppCompatActivity {
-    ImageView imageViewWreckedShipp, glide1, glide2;
-    ClipboardManager cM;
-    ClipData cD;
+public class Minecon extends AppCompatActivity {
+    ImageView mineconImage, mineconShowcase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ship_wrecked);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setSubtitle("Shipwreck Seed");
+        setContentView(R.layout.activity_minecon);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Glide image Finder
-        //
-        imageViewWreckedShipp = findViewById(R.id.shipWreck);
+        mineconImage = findViewById(R.id.mineconImage);
+        mineconShowcase = findViewById(R.id.mineconShowcase);
 
-        glide1 = findViewById(R.id.imageV1);
-        glide2 = findViewById(R.id.imageV2);
-        //
-        //End of Glide Image Finder
-
-        //Glide Image
-        //
         Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-4.jpg")
-                .into(imageViewWreckedShipp);
+                .load("https://mcpehq.com/wp-content/uploads/2017/09/minecon-2017-minecon-earth-event.jpg")
+                .into(mineconImage);
         Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-6.jpg")
-                .into(glide1);
-        Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-7.jpg")
-                .into(glide2);
-        //
-        //End of Glide Image
-
-        cM = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
-
+                .load("https://mcpehq.com/wp-content/uploads/2017/09/minecon-2017-event-768x450.jpg")
+                .into(mineconShowcase);
     }
 
     @Override
@@ -67,15 +46,16 @@ public class ShipWrecked extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.credit:
-                final AlertDialog.Builder mBuilder =  new AlertDialog.Builder(ShipWrecked.this);
+
+                final AlertDialog.Builder mBuilder =  new AlertDialog.Builder(Minecon.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog, null);
                 CardView mCardView = mView.findViewById(R.id.cardViews);
-
                 TextView mVersionCodes = mView.findViewById(R.id.appversion);
 
                 mVersionCodes.setText("v" + String.valueOf(BuildConfig.VERSION_NAME));
+
 
                 mCardView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -91,13 +71,5 @@ public class ShipWrecked extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void copySeedShipWrecked(View view) {
-        String text = "-1618472320";
-        cD  = ClipData.newPlainText("text",text);
-        cM.setPrimaryClip(cD);
-
-        Toast.makeText(getApplicationContext(), "Text Copied", Toast.LENGTH_SHORT).show();
     }
 }

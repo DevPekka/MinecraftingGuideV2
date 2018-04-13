@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -73,6 +74,10 @@ public class HugeCoralBiome extends AppCompatActivity {
                 final AlertDialog.Builder mBuilder =  new AlertDialog.Builder(HugeCoralBiome.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog, null);
                 CardView mCardView = mView.findViewById(R.id.cardViews);
+                TextView mVersionCodes = mView.findViewById(R.id.appversion);
+
+                mVersionCodes.setText("v" + String.valueOf(BuildConfig.VERSION_NAME));
+
 
                 mCardView.setOnClickListener(new View.OnClickListener() {
                     @Override
