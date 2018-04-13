@@ -144,16 +144,74 @@
 
     </android.support.v7.widget.CardView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="146dp"
-        android:background="@color/colorPrimaryDark"
-        android:onClick="downloadFile"
-        android:padding="15dp"
-        android:text="DOWNLOAD TEST"
-        android:textColor="#FFF" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/sspeLightWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/minecraftP2"
+        android:onClick="sspeLightWeight"
+        android:layout_margin="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewP22"
+                android:layout_width="120dp"
+                android:layout_height="107dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/textViewTitleP22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/imageViewP22"
+                android:fontFamily="@font/karla_bold"
+                android:text="SSPE Lightweight Shader"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#242424" />
+
+            <TextView
+                android:id="@+id/textViewShortDescP22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewTitleP22"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imageViewP22"
+                android:fontFamily="@font/karla"
+                android:text="Release"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/textViewRatingP22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewShortDescP22"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="9dp"
+                android:layout_toEndOf="@id/imageViewP22"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/karla_bold"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="SHADER"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
+                android:textColor="#fff"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
 
 </RelativeLayout>

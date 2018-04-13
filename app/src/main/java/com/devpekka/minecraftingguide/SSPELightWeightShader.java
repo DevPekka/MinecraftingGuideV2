@@ -1,12 +1,11 @@
 package com.devpekka.minecraftingguide;
 
 import android.Manifest;
-import android.app.Dialog;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -16,71 +15,52 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    ImageView imageViewShipWrecked, imageViewHugeAtSpawn, imageViewThumbnail;
-
-    private static final int MY_PERMISSION = 1;
-    ProgressDialog mProgressDialog;
-
-    double file_size = 0;
-    String file_name;
+public class SSPELightWeightShader extends AppCompatActivity {
+    ImageView getHugeThumbnail, image1, image2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sspelight_weight_shader);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setSubtitle("SSPE Lightweight Shader  ");
 
-        // Glide image finder
-        //
-        imageViewShipWrecked = findViewById(R.id.imageView);
-        imageViewHugeAtSpawn = findViewById(R.id.imageViewP2);
-        imageViewThumbnail = findViewById(R.id.imageViewP22);
-        //
-        // End of image Finder
-
-        //Glide ImageView
-        //
-        Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/corals-shipwreck-4.jpg")
-                .into(imageViewShipWrecked);
-
-        Glide.with(this)
-                .load("http://mcpedl.com/wp-content/uploads/2018/04/big-coral-3.jpg")
-                .into(imageViewHugeAtSpawn);
+        getHugeThumbnail = findViewById(R.id.sspeLightWeight);
+        image1 = findViewById(R.id.imageV11);
+        image2 = findViewById(R.id.imageV22);
 
         Glide.with(this)
                 .load("http://mcpedl.com/wp-content/uploads/2017/01/sspe-13-1-1.jpg")
-                .into(imageViewThumbnail);
-        //
-        // End of Glide ImageView
+                .into(getHugeThumbnail);
+
+        Glide.with(this)
+                .load("http://mcpedl.com/wp-content/uploads/2017/01/sspe-lite-4-1-1.jpg")
+                .into(image1);
+
+        Glide.with(this)
+                .load("http://mcpedl.com/wp-content/uploads/2017/01/sspe-11-4-1.jpg")
+                .into(image2);
     }
 
     @Override
@@ -96,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.credit:
 
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                final AlertDialog.Builder mBuilder =  new AlertDialog.Builder(SSPELightWeightShader.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog, null);
                 CardView mCardView = mView.findViewById(R.id.cardViews);
 
@@ -118,20 +98,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Intent Method
 
-    public void hugeBiome(View view) {
-        Intent intentCoralBiome = new Intent(MainActivity.this, HugeCoralBiome.class);
-        startActivity(intentCoralBiome);
-    }
+    public void fileDownload(View view) {
 
-    public void shipWreckCoral(View view) {
-        Intent shipWrecked = new Intent(MainActivity.this, DownloadFileTest.class);
-        startActivity(shipWrecked);
-    }
-
-    public void sspeLightWeight(View view) {
-        Intent shaderLightWeight = new Intent(MainActivity.this, SSPELightWeightShader.class);
-        startActivity(shaderLightWeight);
     }
 }
